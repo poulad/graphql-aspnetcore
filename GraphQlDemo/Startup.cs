@@ -38,16 +38,20 @@ namespace GraphQlDemo
             });
 
             services.AddGraphQl(schema =>
-                {
-                    schema.SetQueryType<BooksQuery>();
-                });
-                // .AddDataLoader();
+            {
+                schema.SetQueryType<BooksQuery>();
+                schema.SetMutationType<FooMutation>();
+            });
+            // .AddDataLoader();
 
             // All graph types must be registered
             services.AddSingleton<BooksQuery>();
             services.AddSingleton<BookType>();
             services.AddSingleton<AuthorType>();
             services.AddSingleton<PublisherType>();
+            services.AddSingleton<FooType>();
+            services.AddSingleton<FooInput>();
+            services.AddSingleton<FooMutation>();
 
             services.AddSingleton<IBookRepository, BookRepository>();
         }
